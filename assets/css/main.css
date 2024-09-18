@@ -188,7 +188,7 @@ input, select, textarea {
 			text-decoration: none;
 		}
 
-		h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
+		h1.major, h3.major, h4.major, h5.major, h6.major {
 			border-bottom: solid 1px #ffffff;
 			width: -moz-max-content;
 			width: -webkit-max-content;
@@ -1664,3 +1664,53 @@ input, select, textarea {
 		body.is-preload #footer {
 			opacity: 0;
 		}
+
+/* Arrow naviation */
+	#navigation {
+			display: flex;
+			justify-content: space-between;
+			position: fixed;
+			width: 100%;
+			left: 0;
+			z-index: 10;
+			padding: 0 20px;
+		  }
+		  
+		  .nav-arrow {
+			background-color: gray;
+			color: white;
+			border: none;
+			border-radius: 50%;
+			padding: 15px;
+			cursor: pointer;
+			font-size: 20px;
+			transition: background-color 0.3s;
+		  }
+		  
+		  .nav-arrow:hover {
+			background-color: darkgray;
+		  }
+
+.center-title {
+	border-bottom: solid 1px #ffffff;
+	width: -moz-max-content;
+	width: -webkit-max-content;
+	width: -ms-max-content;
+	width: max-content;
+	padding-bottom: 0.5rem;
+	margin: auto;
+}
+
+@media screen and (max-width: 768px) {
+    h2.center-title{
+        font-size: 1em;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .nav-arrow {
+        padding: 10px; /* Réduit l'espace autour du texte */
+        font-size: 16px; /* Réduit la taille du texte */
+    }
+}
+		
