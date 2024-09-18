@@ -39,42 +39,51 @@
 					<div id="main">
 
 						<!-- Intro -->
-							<article id="intro">
-								<h2 class="major">Septembre - Novembre</h2>
-								<span class="image main"><img src="images/Remise_en_forme.jpg" alt="" /></span>
-								<p>Durée : <strong>8 Semaines</strong>.<br> Phase : <strong>Préparation générale</strong> </p>
+						<article id="intro">
+							<div id="navigation">
+								<a id="prevArrow" class="nav-arrow" href="index.html"><i class="fas fa-arrow-left"></i></a>
+								<a id="nextArrow" class="nav-arrow" href="#work"><i class="fas fa-arrow-right"></i></a>
+							</div>
+							<h2 class="major center-title">Septembre - Novembre</h2>
+							<span class="image main"><img src="images/Remise_en_forme.jpg" alt="" /></span>
+							<p>Durée : <strong>8 Semaines</strong>.<br> Phase : <strong>Préparation générale</strong> </p>
 
-								<table>
-									<thead>
-										<tr>
-											<th>Fréquence</th>
-											<th>Type d'effort</th>
-											<th>Description</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>2x par semaine</td>
-											<td>Endurance / Cardio</td>
-											<td>Rythme modéré, Course ou Natation Objectif : 45-60min</td>
-										</tr>
-										<tr>
-											<td>2x par semaine</td>
-											<td>Renforcement musculaire</td>
-											<td>3 séries: <br> 10 Squats , 20 fentes, 1min planche, 15 pompes</td>
-										</tr>
-										<tr>
-											<td>1x par semaine</td>
-											<td>Souplesse / Mobilité</td>
-											<td>Yoga ou stretching pour améliorer la flexibilité et prévenir les blessures.</td>
-										</tr>
-									</tbody>
-								</table>
-							</article>
+							<!-- Table -->
+							<table>
+								<thead>
+									<tr>
+										<th>Fréquence</th>
+										<th>Type d'effort</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>2x par semaine</td>
+										<td>Endurance / Cardio</td>
+										<td>Rythme modéré, Course ou Natation Objectif : 45-60min</td>
+									</tr>
+									<tr>
+										<td>2x par semaine</td>
+										<td>Renforcement musculaire</td>
+										<td>3 séries: <br> 10 Squats , 20 fentes, 1min planche, 15 pompes</td>
+									</tr>
+									<tr>
+										<td>1x par semaine</td>
+										<td>Souplesse / Mobilité</td>
+										<td>Yoga ou stretching pour améliorer la flexibilité et prévenir les blessures.</td>
+									</tr>
+								</tbody>
+							</table>
+						</article>
 
 						<!-- Work -->
 							<article id="work">
-								<h2 class="major">Décembre - Mai</h2>
+								<div id="navigation">
+									<a id="prevArrow" class="nav-arrow" href="#intro"><i class="fas fa-arrow-left"></i></a>
+									<a id="nextArrow" class="nav-arrow" href="#contact"><i class="fas fa-arrow-right"></i></a>
+								</div>
+								<h2 class="major center-title">Décembre - Mai</h2>
 								<span class="image main"><img src="images/Bien_en_forme.jpg" alt="" /></span>
 								<p>Durée : <strong>16 Semaines</strong>.<br> Phase : <strong>Perfectionnement de l'état général</strong> </p>
 
@@ -105,11 +114,14 @@
 									</tbody>
 								</table>
 							</article>
-							</article>
 
 						<!-- Contact -->
 						<article id="contact">
-							<h2 class="major">Juin - Juillet</h2>
+							<div id="navigation">
+								<a id="prevArrow" class="nav-arrow" href="#work"><i class="fas fa-arrow-left"></i></a>
+								<a id="nextArrow" class="nav-arrow" href="#element"><i class="fas fa-arrow-right"></i></a>
+							</div>
+							<h2 class="major center-title">Juin - Juillet</h2>
 							<span class="image main"><img src="images/cycliste_débutant.jpg" alt="" /></span>
 							<p>Durée : <strong>8 Semaines</strong>.<br> Phase : <strong>Prise en main du vélo</strong> </p>
 							
@@ -170,12 +182,15 @@
 										<td>Même programme, réduction des charges / répétitions pour éviter de surcharger le corps.</td>
 									</tr>
 								</tbody>
-							</table>
+							</table>	
 						</article>
 						
 						<!-- Elements -->
 						<article id="element">
-							<h2 class="major">Août - le mois des champions</h2>
+							<div id="navigation">
+								<a id="prevArrow" class="nav-arrow" href="#contact"><i class="fas fa-arrow-left"></i></a>
+							</div>
+							<h2 class="major center-title">Août - maillot Jaune</h2>
 							<span class="image main"><img src="images/champions.jpg" alt="" /></span>
 							<p>Durée : <strong>3 Semaines</strong>.<br> Phase : <strong>Objectif champions du monde</strong> </p>
 
@@ -206,8 +221,7 @@
 								</tbody>
 							</table>
 						</article>
-						</article>
-
+					</article>
 					</div>
 
 				<!-- Footer -->
@@ -221,6 +235,7 @@
 			<div id="bg"></div>
 
 		<!-- Scripts -->
+			<script src="assets/js/navigation.js"></script>
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/browser.min.js"></script>
 			<script src="assets/js/breakpoints.min.js"></script>
