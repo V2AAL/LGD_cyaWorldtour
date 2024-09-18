@@ -895,6 +895,9 @@ input, select, textarea {
 
 /* Icons */
 
+	.fa-solid{
+		font-size: 30px;
+	}
 	ul.icons {
 		cursor: default;
 		list-style: none;
@@ -915,9 +918,10 @@ input, select, textarea {
 				box-shadow: inset 0 0 0 1px #ffffff;
 				display: inline-block;
 				height: 2.25rem;
-				line-height: 2.25rem;
+				line-height: 2.25rem; 
 				text-align: center;
-				width: 2.25rem;
+				width: 2.25rem; 
+				font-size: 30px; 
 			}
 
 				ul.icons li a:hover {
@@ -1293,7 +1297,7 @@ input, select, textarea {
 		#header .logo {
 			width: 5.5rem;
 			height: 5.5rem;
-			line-height: 5.5rem;
+			line-height: 6.2rem;
 			border: solid 1px #ffffff;
 			border-radius: 100%;
 		}
