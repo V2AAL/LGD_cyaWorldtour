@@ -1763,6 +1763,7 @@ input, select, textarea {
 /* Style pour le popup */
 #popup {
     text-align: center;
+	justify-content: center;
 	align-items: center;
     position: fixed;
     bottom: 0;
@@ -1771,13 +1772,14 @@ input, select, textarea {
     transform: translateX(-50%) translateY(100%); /* Changement: Centrage horizontal + popup caché en bas */
     width: 75%;
     height: 92%;
-    background: rgb(65, 73, 86);
+    background: linear-gradient(90deg, rgb(52, 51, 142) 0%, rgba(203,77,7,1) 100%);
     border: 1px solid #ffffff;
     border-radius: 10%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     display: none;
     z-index: 1000;
     overflow-y: auto;
+	opacity: 0.9;
 }
 
 /* Style pour le tableau dans le popup */
@@ -1785,10 +1787,13 @@ input, select, textarea {
     width: 90%;
     margin: 0 auto;
     border-collapse: collapse;
+	border-radius: 50px;
 }
 
-#popup-content th, #popup-content td {
-    border: 1px solid #ddd;
+#popup-content th, #popup-content td, #popup button {
+	background: rgb(181, 147, 73);
+    border: 1px solid #000000;
+	color:black;
     padding: 8px;
     text-align: left;
 }
@@ -1903,7 +1908,7 @@ input, select, textarea {
 }
 
 #add-performance-form {
-    background-color: #2a2626; /* White background for the form */
+    background-color: #2a2626; 
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -1912,8 +1917,8 @@ input, select, textarea {
 
 .close-form {
     position: absolute;
-    top: 10px;
-    right: 10px;
+	top: -5%;
+    left: 92%;
     cursor: pointer;
     color: red;
     font-size: 3em;
@@ -1923,17 +1928,45 @@ input, select, textarea {
     background-color: black; /* Fond noir */
     color: white; /* Couleur du texte en blanc */
     border: 1px solid #ccc; /* Bordure grise */
+	width: 100%;
 }
+
+#popup button {
+    text-align: center;
+    justify-content: center;
+    display: flex; /* Permet l'utilisation de flexbox */
+    align-items: center; /* Centre verticalement le texte */
+    padding: 10px 20px; /* Assure que le bouton ait assez d'espace autour du texte */
+    margin: auto;    
+	background: linear-gradient(90deg, rgb(114, 62, 32) 0%, rgb(75, 73, 165) 100%);
+    color: #ffffff; /* Couleur du texte */
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#popup button:hover {
+    background: linear-gradient(90deg, #485e5e 0%, #7d6450 100%); /* Change le gradient au survol */
+}
+
 
 #add-performance-form {
-    width: 40%;
+    width: 70%;
     margin: 0 auto; /* Centre le formulaire */
-    background-color: #000; /* Fond noir */
+    background-color: #000000; /* Fond noir */
     padding: 20px; /* Ajoute un peu de rembourrage */
     border-radius: 8px; /* Coins arrondis */
+	border: 3px solid white;
     color: #fff; /* Texte blanc pour le contraste */
+	margin-top: 15px;
 }
 
+.section-form {
+    border: 2px dotted #ffffff;
+	padding:5px;
+    margin: 10px;
+    border-radius: 5px; 
+}
 
 @media screen and (max-width: 768px) {
     h2.center-title{
