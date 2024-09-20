@@ -50,19 +50,28 @@
                 <button onclick="showAddPerformanceForm('userName')">Ajouter une performance</button>
                 <div id="add-performance-form" class="form-popup" style="display:none;">
                     <span onclick="closeAddPerformanceForm()"><strong class="close-form">&times;</strong></span> <!-- Close button -->
-                    <label for="performance-date"><strong>Date:</strong></label>
-                    <input type="date" id="performance-date" class="form-input" required>
-                    <label for="performance-type"><strong>Type d'effort:</strong></label>
-                    <select id="performance-type" class="form-input" required>
-                        <option value="Course à pied">Course à pied</option>
-                        <option value="Vélo">Vélo</option>
-                        <option value="Renforcement musculaire">Renforcement musculaire</option>
-                        <option value="Yoga / pliométrie">Yoga / pliométrie</option>
-                    </select>
-                    <label for="performance-details"></strong>Détails:</strong></label>
-                    <input type="text" id="performance-details" class="form-input" required>
-                    <label for="performance-name"><strong>Nom de la perf:</strong></label>
-                    <input type="text" id="performance-name" class="form-input" required>
+                    <div class= section-form>
+                        <label for="performance-name"><strong>Titre de ta performance</strong></label>
+                        <input type="text" id="performance-name" class="form-input" required>
+                    </div>    
+                    <div class= section-form>
+                        <label for="performance-date"><strong>Date:</strong></label>
+                        <input type="date" id="performance-date" class="form-input" required>
+                    </div>
+                    <div class= section-form>
+                        <label for="performance-type"><strong>Type d'effort:</strong></label>
+                        <select id="performance-type" class="form-input" required>
+                    
+                            <option value="Course à pied">Course à pied</option>
+                            <option value="Vélo">Vélo</option>
+                            <option value="Renforcement musculaire">Renforcement musculaire</option>
+                            <option value="Yoga / pliométrie">Yoga / pliométrie</option>
+                        </select>
+                    </div>
+                    <div class= section-form>
+                        <label for="performance-details"><strong>Détails:</strong></label>
+                        <input type="text" id="performance-details" class="form-input" required>
+                    </div>
                     <br>
                     <button onclick="addPerformance()">Soumettre</button>
                 </div>
@@ -188,7 +197,16 @@
                 popupContent.innerHTML = '';
         
                 if (records.length === 0) {
-                    popupContent.innerHTML = '<p>Vas travailler Chien !</p>';
+                    popupContent.innerHTML = '<p>Va travailler Chien !</p>';
+                    const gif = document.createElement('img');
+                    gif.src = 'https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExaWFxYjRjMHkxNGk2eWoxZzU4eXRsemZheDE5MXQzMTFtazU3YnFqdSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/PV9t4AJL5UweI/giphy.gif';
+                    gif.alt = 'Gif motivant';
+                    gif.style.width = '100%'; // Ajuster la largeur si nécessaire
+                    gif.style.maxWidth = '300px'; // Limite la taille si nécessaire
+                    gif.style.display = 'block'; // Centrer l'image horizontalement si le parent est un bloc
+                    gif.style.margin = '10px auto'; // Ajoute un espacement autour
+
+                    popupContent.appendChild(gif); // Ajoute l'image au contenu de la popup
                 } else {
                     records.sort((a, b) => new Date(b.fields['Date']) - new Date(a.fields['Date']));
                     const table = document.createElement('table');
