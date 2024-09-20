@@ -1,0 +1,296 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Préparation Tour de Normandie Cya World Tour</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="../css/main.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <noscript><link rel="stylesheet" href="../css/noscript.css" /></noscript>
+    </head>
+    <body class="is-preload">
+
+        <!-- Wrapper -->
+        <div id="wrapper">
+            <header id="header">
+                <div class="logo">
+                    <a href="../../index.html"><span class="fa-solid fa-bicycle"></span></a>
+                </div>
+                <div class="content">
+                    <div class="inner">
+                        <h1>Performances</h1>
+                        <p><strong>Ici repose les meilleures performances de nos sportifs</strong></p>
+                        <p><strong>Si vous en êtes digne, alors ajoutez les vôtres !</strong></p>
+                    </div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><button onclick="fetchPerformances('Clément')">Clément</button></li>
+                        <li><button onclick="fetchPerformances('Arthur')">Arthur</button></li>
+                        <li><button onclick="fetchPerformances('Pierre')">Pierre</button></li>
+                        <li><button onclick="fetchPerformances('Valentin')">Valentin</button></li>
+                    </ul>
+                </nav>                
+            </header>
+            <footer id="footer">
+                <p class="copyright">&copy; Contactez LGD Corp. pour vos projets perso.</p>
+            </footer>
+        </div>
+
+        <!-- BG -->
+			<div id="bg"></div>
+
+            <div id="popup">
+                <span class="close" onclick="closePopup()">&times;</span>
+                <h2 id="popup-title">Performance de ...</h2>
+                <button onclick="showAddPerformanceForm('userName')">Ajouter une performance</button>
+                <div id="add-performance-form" class="form-popup" style="display:none;">
+                    <span onclick="closeAddPerformanceForm()"><strong class="close-form">&times;</strong></span> <!-- Close button -->
+                    <label for="performance-date"><strong>Date:</strong></label>
+                    <input type="date" id="performance-date" class="form-input" required>
+                    <label for="performance-type"><strong>Type d'effort:</strong></label>
+                    <select id="performance-type" class="form-input" required>
+                        <option value="Course à pied">Course à pied</option>
+                        <option value="Vélo">Vélo</option>
+                        <option value="Renforcement musculaire">Renforcement musculaire</option>
+                        <option value="Yoga / pliométrie">Yoga / pliométrie</option>
+                    </select>
+                    <label for="performance-details"></strong>Détails:</strong></label>
+                    <input type="text" id="performance-details" class="form-input" required>
+                    <label for="performance-name"><strong>Nom de la perf:</strong></label>
+                    <input type="text" id="performance-name" class="form-input" required>
+                    <br>
+                    <button onclick="addPerformance()">Soumettre</button>
+                </div>
+                <br><br>
+                <div id="popup-content"></div>
+            </div>
+
+        <!-- Scripts -->
+        <script src="../js/jquery.min.js"></script>
+        <script src="../js/browser.min.js"></script>
+        <script src="../js/breakpoints.min.js"></script>
+        <script src="../js/util.js"></script>
+        <script src="../js/main.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/umd/react.production.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.2/umd/react-dom.production.min.js"></script>
+        <script>
+            function closeAddPerformanceForm() {
+                document.getElementById('add-performance-form').style.display = 'none';
+            }
+        </script>
+        <script>
+            function getUserNameById(userId) {
+                const apiKey = 'patSX6ojs44s2r1nU.01fc5dff03ff2b90e2b8803920b73b5412251b9c04dbcf66a36dbbbcd7fd5f44';
+                const baseId = 'appc0LUBjP5fF2Cv6';
+                const userTableId = 'tblor7HOQ0Y4WzXNB';
+                const url = `https://api.airtable.com/v0/${baseId}/${userTableId}/${userId}`;
+
+                return fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        Authorization: `Bearer ${apiKey}`,
+                        'Content-Type': 'application/json',
+                    },
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    return data.fields['Nom'];
+                })
+                .catch(error => {
+                    console.error('Error fetching user name:', error);
+                    return null;
+                });
+            }
+        </script>
+        <script>
+            let currentUserId = '';
+            let currentUserName = '';
+            let userFetched = false;
+        
+            function fetchUserId(userName) {
+                if (userFetched) return;
+        
+                const apiKey = 'patSX6ojs44s2r1nU.01fc5dff03ff2b90e2b8803920b73b5412251b9c04dbcf66a36dbbbcd7fd5f44';
+                const baseId = 'appc0LUBjP5fF2Cv6';
+                const userTableId = 'tblor7HOQ0Y4WzXNB';
+                const url = `https://api.airtable.com/v0/${baseId}/${userTableId}?filterByFormula={Nom}='${userName}'`;
+        
+                fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        Authorization: `Bearer ${apiKey}`,
+                        'Content-Type': 'application/json',
+                    },
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.records.length > 0) {
+                        currentUserId = data.records[0].id;
+                        currentUserName = userName; 
+                        userFetched = true; // Indique que l'utilisateur a été récupéré
+                        fetchPerformances(userName); // Appel pour récupérer les performances
+                    } else {
+                        console.error('Aucun utilisateur trouvé pour ce nom');
+                    }
+                })
+                .catch(error => console.error('Error fetching user ID:', error));
+            }
+        
+            function fetchPerformances(userName) {
+                fetchUserId(userName);
+                const apiKey = 'patSX6ojs44s2r1nU.01fc5dff03ff2b90e2b8803920b73b5412251b9c04dbcf66a36dbbbcd7fd5f44';
+                const baseId = 'appc0LUBjP5fF2Cv6';
+                const tableId = 'tblsOmXe09nuNWc29';
+                const url = `https://api.airtable.com/v0/${baseId}/${tableId}?filterByFormula={Auteur de la perf}='${userName}'`;
+        
+                console.log(url);
+                fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        Authorization: `Bearer ${apiKey}`,
+                        'Content-Type': 'application/json',
+                    },
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    displayPerformances(data.records, userName);
+                })
+                .catch(error => console.error('Error fetching performances:', error));
+            }
+        
+            function displayPerformances(records, userName) {
+                const popup = document.getElementById('popup');
+                const overlay = document.getElementById('overlay');
+                const popupTitle = document.getElementById('popup-title');
+                const popupContent = document.getElementById('popup-content');
+        
+                popupTitle.textContent = `Performance de ${userName}`;
+                popupContent.innerHTML = '';
+        
+                if (records.length === 0) {
+                    popupContent.innerHTML = '<p>Vas travailler Chien !</p>';
+                } else {
+                    records.sort((a, b) => new Date(b.fields['Date']) - new Date(a.fields['Date']));
+                    const table = document.createElement('table');
+                    const headerRow = table.insertRow();
+                    headerRow.innerHTML = `<th>Nom</th><th>Date</th><th>Type d'effort</th><th>Détails</th>`;
+        
+                    records.forEach(record => {
+                        const row = table.insertRow();
+                        const fields = record.fields;
+                        row.innerHTML = `<td>${fields['Nom'] || ''}</td><td>${fields['Date'] || ''}</td><td>${fields['Type d\'effort'] || ''}</td><td>${fields['Details'] || ''}</td>`;
+                    });
+        
+                    popupContent.appendChild(table);
+                }
+        
+                // Réinitialiser l'animation de fermeture
+                popup.classList.remove('gb-popup-bounce-to-top');
+                // Ajouter animation d'ouverture
+                popup.classList.add('gb-popup-bounce-to-bottom');
+        
+                popup.style.display = 'block';
+                overlay.style.display = 'block';
+            }
+        
+            function closePopup() {
+                const popup = document.getElementById('popup');
+                const overlay = document.getElementById('overlay');
+        
+                // Ajouter animation de fermeture
+                popup.classList.remove('gb-popup-bounce-to-bottom');
+                popup.classList.add('gb-popup-bounce-to-top');
+        
+                // Attendre la fin de l'animation de fermeture avant de cacher le popup
+                popup.addEventListener('animationend', function handleCloseAnimation() {
+                    if (popup.classList.contains('gb-popup-bounce-to-top')) {
+                        popup.style.display = 'none';
+                        overlay.style.display = 'none';
+                    }
+                    // Retirer l'événement après la fermeture
+                    popup.removeEventListener('animationend', handleCloseAnimation);
+                });
+                userFetched = false
+            }
+        
+            function showAddPerformanceForm(userName) {
+                currentUserName = userName;
+                document.getElementById('add-performance-form').style.display = 'block';
+            }
+        
+            function addPerformance() {
+                const dateInput = document.getElementById('performance-date').value;
+                console.log("Date sélectionnée :", dateInput); // Ajoutez ceci pour le débogage
+
+                // Vérifier si la date est valide
+                if (!dateInput) {
+                    alert("Veuillez sélectionner une date.");
+                    return;
+                }
+
+                const date = new Date(dateInput).toISOString().split('T')[0]; // Format YYYY-MM-DD
+                const types = Array.from(document.getElementById('performance-type').selectedOptions).map(option => option.value);
+                const details = document.getElementById('performance-details').value;
+                const name = document.getElementById('performance-name').value;
+
+                const newPerformance = {
+                    fields: {
+                        'Date': date,
+                        'Type d\'effort': types,
+                        'Details': details,
+                        'Nom': name,
+                        'Auteur de la perf': [currentUserId] // Utiliser l'ID de l'utilisateur
+                    }
+                };
+
+                const apiKey = 'patSX6ojs44s2r1nU.01fc5dff03ff2b90e2b8803920b73b5412251b9c04dbcf66a36dbbbcd7fd5f44';
+                const baseId = 'appc0LUBjP5fF2Cv6';
+                const tableId = 'tblsOmXe09nuNWc29';
+                const url = `https://api.airtable.com/v0/${baseId}/${tableId}`;
+
+                fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        Authorization: `Bearer ${apiKey}`,
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(newPerformance),
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Performance ajoutée:', data);
+                    closeAddPerformanceForm();
+                    return getUserNameById(currentUserId); // Récupérer le nom après ajout
+                })
+                .then(userName => {
+                    if (userName) {
+                        currentUserName = userName; // Mettre à jour le nom de l'utilisateur
+                        fetchPerformances(currentUserName); // Rouvrir le popup avec le bon nom
+                    }
+                })
+                .catch(error => console.error('Error adding performance:', error));
+            }
+        </script>        
+    </body>
+</html>

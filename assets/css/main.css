@@ -289,7 +289,7 @@ input, select, textarea {
 	}
 
 	.align-left {
-		text-align: left;
+		text-align:center;
 	}
 
 	.align-center {
@@ -965,7 +965,7 @@ input, select, textarea {
 			font-size: 0.9em;
 			font-weight: 600;
 			padding: 0 0.75em 0.75em 0.75em;
-			text-align: left;
+			text-align: center;
 		}
 
 		table thead {
@@ -1760,6 +1760,179 @@ input, select, textarea {
     font-size: 1.2em;
 }
 
+/* Style pour le popup */
+#popup {
+    text-align: center;
+	align-items: center;
+    position: fixed;
+    bottom: 0;
+	left: 12.5%;
+    right: 0;
+    transform: translateX(-50%) translateY(100%); /* Changement: Centrage horizontal + popup caché en bas */
+    width: 75%;
+    height: 92%;
+    background: rgb(65, 73, 86);
+    border: 1px solid #ffffff;
+    border-radius: 10%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: none;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+/* Style pour le tableau dans le popup */
+#popup-content table {
+    width: 90%;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+#popup-content th, #popup-content td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+/* Style pour la croix de fermeture */
+#popup .close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Ajout de style pour le titre du popup */
+#popup-title {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+/* Animation for popup appearance */
+.gb-popup-bounce-to-bottom {
+    animation: gb-popup-bounce-to-bottom 1.2s both;
+}
+
+@keyframes gb-popup-bounce-to-bottom {
+    0% {
+        transform: translateY(100%); /* Popup commence en bas */
+        animation-timing-function: ease-in;
+        opacity: 0;
+    }
+    38% {
+        transform: translateY(0);
+        animation-timing-function: ease-out;
+        opacity: 1;
+    }
+    55% {
+        transform: translateY(-65px);
+        animation-timing-function: ease-in;
+    }
+    72% {
+        transform: translateY(0px);
+        animation-timing-function: ease-out;
+    }
+    81% {
+        transform: translateY(-28px);
+        animation-timing-function: ease-in;
+    }
+    90% {
+        transform: translateY(0);
+        animation-timing-function: ease-out;
+    }
+    95% {
+        transform: translateY(-8px);
+        animation-timing-function: ease-in;
+    }
+    100% {
+        transform: translateY(0);
+        animation-timing-function: ease-out;
+    }
+}
+
+/* Animation de fermeture */
+.gb-popup-bounce-to-top {
+    animation: gb-popup-bounce-to-top 1.2s both;
+}
+
+@keyframes gb-popup-bounce-to-top {
+    0% {
+        transform: translateY(0); /* Popup commence à sa position normale */
+        animation-timing-function: ease-out;
+        opacity: 1;
+    }
+    38% {
+        transform: translateY(-28px);
+        animation-timing-function: ease-in;
+    }
+    55% {
+        transform: translateY(0);
+        animation-timing-function: ease-out;
+    }
+    72% {
+        transform: translateY(-65px);
+        animation-timing-function: ease-in;
+    }
+    81% {
+        transform: translateY(0);
+        animation-timing-function: ease-out;
+    }
+    90% {
+        transform: translateY(100%);
+        animation-timing-function: ease-in;
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(100%);
+        animation-timing-function: ease-in;
+        opacity: 0;
+    }
+}
+
+/* Style pour l'overlay (couvrir le contenu derrière le popup) */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 999;
+}
+
+#add-performance-form {
+    background-color: #2a2626; /* White background for the form */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative; /* For positioning the close button */
+}
+
+.close-form {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    color: red;
+    font-size: 3em;
+}
+
+#performance-date {
+    background-color: black; /* Fond noir */
+    color: white; /* Couleur du texte en blanc */
+    border: 1px solid #ccc; /* Bordure grise */
+}
+
+#add-performance-form {
+    width: 40%;
+    margin: 0 auto; /* Centre le formulaire */
+    background-color: #000; /* Fond noir */
+    padding: 20px; /* Ajoute un peu de rembourrage */
+    border-radius: 8px; /* Coins arrondis */
+    color: #fff; /* Texte blanc pour le contraste */
+}
 
 
 @media screen and (max-width: 768px) {
