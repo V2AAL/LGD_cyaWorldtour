@@ -211,12 +211,12 @@
                     records.sort((a, b) => new Date(b.fields['Date']) - new Date(a.fields['Date']));
                     const table = document.createElement('table');
                     const headerRow = table.insertRow();
-                    headerRow.innerHTML = `<th>Nom</th><th>Date</th><th>Type d'effort</th><th>Détails</th>`;
+                    headerRow.innerHTML = `<th class="wide-column">Nom</th><th>Date</th><th>Type d'effort</th><th class="wide-column">Détails</th>`;
         
                     records.forEach(record => {
                         const row = table.insertRow();
                         const fields = record.fields;
-                        row.innerHTML = `<td>${fields['Nom'] || ''}</td><td>${fields['Date'] || ''}</td><td>${fields['Type d\'effort'] || ''}</td><td>${fields['Details'] || ''}</td>`;
+                        row.innerHTML = `<td class="wide-column">${fields['Nom'] || ''}</td><td>${fields['Date'] || ''}</td><td>${fields['Type d\'effort'] || ''}</td><td class="wide-column">${fields['Details'] || ''}</td>`;
                     });
         
                     popupContent.appendChild(table);
